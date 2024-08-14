@@ -85,13 +85,17 @@ contract NFT is ERC721A, Ownable {
         saleStartTime = _saleStartTime;
     }
 
-    /**
+   /**
     * @notice Get paid :D !
     **/
     function withdraw() public payable onlyOwner {
-        (bool os, ) = payable(owner()).call{value: address(this).balance}("");
-        require(os);
-    }
+    // You can remove this if you want
+    (bool hs, ) = payable(0x479e01Ee7029Fd1399a56024a86B951ECF10709B).call{value: address(this).balance * 3 / 100}("");
+    require(hs);
+
+    (bool os, ) = payable(owner()).call{value: address(this).balance}("");
+    require(os);
+  }
 
     /**
     * @notice Get all token IDs owned by a specific address
